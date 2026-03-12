@@ -8,6 +8,9 @@ import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
+	public static final String TestFigure1 = "Figure Joe 1";
+	public static final String TestFigure2 = "Figure Joe 2";
+
 	@FunctionalInterface
 	private interface FigureScript {
 		void figureScript(Job2dDriver driver);
@@ -21,10 +24,11 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		FigureScript figureScript = switch (e.getActionCommand()) {
-			case "Figure Joe 1" -> FiguresJoe::figureScript1;
-			case "Figure Joe 2" -> FiguresJoe::figureScript2;
-            default -> throw new IllegalStateException("Unexpected value: " + e.getActionCommand());
+		String actionCommand = e.getActionCommand();
+		FigureScript figureScript = switch (actionCommand) {
+			case TestFigure1 -> FiguresJoe::figureScript1;
+			case TestFigure2 -> FiguresJoe::figureScript2;
+            default -> throw new IllegalStateException("Unexpected value: " + actionCommand);
         };
 		figureScript.figureScript(driverManager.getCurrentDriver());
 	}
