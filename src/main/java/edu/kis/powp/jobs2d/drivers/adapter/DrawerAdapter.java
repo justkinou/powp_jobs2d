@@ -5,9 +5,6 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
 
-/**fold
- * driver adapter to drawer with several bugs.
- */
 public class DrawerAdapter implements Job2dDriver {
 	private int startX = 0, startY = 0;
 
