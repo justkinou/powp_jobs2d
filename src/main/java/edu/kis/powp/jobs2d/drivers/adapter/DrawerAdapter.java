@@ -33,6 +33,6 @@ public class DrawerAdapter implements Job2dDriver {
 
 	@Override
 	public String toString() {
-		return "@Q!$!@$!#@$(*#@&Q(%^*#@";
+		return "Drawer Adapter";
 	}
 }
