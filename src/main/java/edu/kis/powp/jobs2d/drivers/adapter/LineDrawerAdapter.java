@@ -4,6 +4,7 @@ import edu.kis.legacy.drawer.shape.ILine;
 import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.features.DrawerFeature;
+import edu.kis.powp.jobs2d.features.LineTypeFeature;
 
 public class LineDrawerAdapter implements Job2dDriver {
     private int startX = 0, startY = 0;
@@ -20,7 +21,12 @@ public class LineDrawerAdapter implements Job2dDriver {
 
     @Override
     public void operateTo(int x, int y) {
-        ILine line = LineFactory.getSpecialLine();  // TODO: get the selected line type
+        LineTypeFeature.LineType lineType = LineTypeFeature.getLineType();
+        ILine line = switch (lineType) {
+            case Basic -> LineFactory.getBasicLine();
+            case Dotted -> LineFactory.getDottedLine();
+            case Special -> LineFactory.getSpecialLine();
+        };
         line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         setPosition(x, y);
