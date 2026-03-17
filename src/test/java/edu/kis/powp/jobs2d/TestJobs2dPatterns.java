@@ -43,10 +43,10 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver drawerAdapter = new DrawerAdapter();
+		Job2dDriver drawerAdapter = new DrawerAdapter(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver(drawerAdapter.toString(), drawerAdapter);
 
-		Job2dDriver lineDrawerAdapter = new LineDrawerAdapter();
+		Job2dDriver lineDrawerAdapter = new LineDrawerAdapter(DrawerFeature.getDrawerController());
 		DriverFeature.addDriver(lineDrawerAdapter.toString(), lineDrawerAdapter);
 
 		DriverFeature.updateDriverInfo();
