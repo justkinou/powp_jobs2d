@@ -10,7 +10,7 @@ public class LineTypeFeature {
         Special,
     }
 
-    private static LineType lineType;
+    private static LineType lineType = LineType.Basic;
 
     public static void setupLineTypePlugin(Application application) {
         SelectLineTypeOptionListener selectLineTypeOptionListener = new SelectLineTypeOptionListener();
