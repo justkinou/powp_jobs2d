@@ -5,16 +5,14 @@ import java.awt.event.ActionListener;
 
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
+import edu.kis.powp.jobs2d.drivers.adapter.AbstractDriverAdapter;
+import edu.kis.powp.jobs2d.magicpresets.FiguresJane;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
 public class SelectTestFigureOptionListener implements ActionListener {
-	public static final String TestFigure1 = "Figure Joe 1";
-	public static final String TestFigure2 = "Figure Joe 2";
-
-	@FunctionalInterface
-	private interface FigureScript {
-		void figureScript(Job2dDriver driver);
-	}
+	public static final String TestFigureJoe1 = "Figure Joe 1";
+	public static final String TestFigureJoe2 = "Figure Joe 2";
+	public static final String TestFigureJane = "Figure Jane";
 
 	private final DriverManager driverManager;
 
@@ -24,12 +22,19 @@ public class SelectTestFigureOptionListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Job2dDriver driver = driverManager.getCurrentDriver();
 		String actionCommand = e.getActionCommand();
-		FigureScript figureScript = switch (actionCommand) {
-			case TestFigure1 -> FiguresJoe::figureScript1;
-			case TestFigure2 -> FiguresJoe::figureScript2;
+		switch (actionCommand) {
+			case TestFigureJoe1 -> {
+				FiguresJoe.figureScript1(driver);
+			}
+			case TestFigureJoe2 -> {
+				FiguresJoe.figureScript2(driver);
+			}
+			case TestFigureJane -> {
+				FiguresJane.figureScript(new AbstractDriverAdapter(driver));
+			}
             default -> throw new IllegalStateException("Unexpected value: " + actionCommand);
         };
-		figureScript.figureScript(driverManager.getCurrentDriver());
 	}
 }

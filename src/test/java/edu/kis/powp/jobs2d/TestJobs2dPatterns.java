@@ -28,8 +28,9 @@ public class TestJobs2dPatterns {
 		SelectTestFigureOptionListener selectTestFigureOptionListener = new SelectTestFigureOptionListener(
 				DriverFeature.getDriverManager());
 
-		application.addTest(SelectTestFigureOptionListener.TestFigure1, selectTestFigureOptionListener);
-		application.addTest(SelectTestFigureOptionListener.TestFigure2, selectTestFigureOptionListener);
+		application.addTest(SelectTestFigureOptionListener.TestFigureJoe1, selectTestFigureOptionListener);
+		application.addTest(SelectTestFigureOptionListener.TestFigureJoe2, selectTestFigureOptionListener);
+		application.addTest(SelectTestFigureOptionListener.TestFigureJane, selectTestFigureOptionListener);
 	}
 
 	/**
