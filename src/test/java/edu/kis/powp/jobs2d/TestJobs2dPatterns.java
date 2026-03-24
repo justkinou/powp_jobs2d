@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import edu.kis.legacy.drawer.panel.DefaultDrawerFrame;
 import edu.kis.legacy.drawer.panel.DrawPanelController;
+import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.drivers.adapter.DrawerToDriverAdapter;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDrawerToDriverAdapter;
@@ -43,11 +44,27 @@ public class TestJobs2dPatterns {
 		DriverFeature.addDriver("Logger Driver", loggerDriver);
 		DriverFeature.getDriverManager().setCurrentDriver(loggerDriver);
 
-		Job2dDriver drawerAdapter = new DrawerToDriverAdapter(DrawerFeature.getDrawerController());
-		DriverFeature.addDriver(drawerAdapter.toString(), drawerAdapter);
+		DrawPanelController drawPanelController = DrawerFeature.getDrawerController();
+		Job2dDriver drawerAdapter = new DrawerToDriverAdapter(drawPanelController);
+		DriverFeature.addDriver("drawer2driver adapter", drawerAdapter);
 
-		Job2dDriver lineDrawerAdapter = new LineDrawerToDriverAdapter(DrawerFeature.getDrawerController());
-		DriverFeature.addDriver(lineDrawerAdapter.toString(), lineDrawerAdapter);
+		Job2dDriver basicLineDrawerAdapter = new LineDrawerToDriverAdapter(
+				drawPanelController,
+				LineFactory.getBasicLine()
+		);
+
+		DriverFeature.addDriver("lineDrawer2Driver: Basic", basicLineDrawerAdapter);
+		Job2dDriver dottedLineDrawerAdapter = new LineDrawerToDriverAdapter(
+				drawPanelController,
+				LineFactory.getDottedLine()
+		);
+
+		DriverFeature.addDriver("lineDrawer2Driver: Dotted", dottedLineDrawerAdapter);
+		Job2dDriver specialLineDrawerAdapter = new LineDrawerToDriverAdapter(
+				drawPanelController,
+				LineFactory.getSpecialLine()
+		);
+		DriverFeature.addDriver("lineDrawer2Driver: Special", specialLineDrawerAdapter);
 
 		DriverFeature.updateDriverInfo();
 	}
