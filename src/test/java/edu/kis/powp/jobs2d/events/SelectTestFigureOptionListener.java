@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import edu.kis.powp.jobs2d.Job2dDriver;
 import edu.kis.powp.jobs2d.drivers.DriverManager;
-import edu.kis.powp.jobs2d.drivers.adapter.DriverToAbstractDroverAdapter;
+import edu.kis.powp.jobs2d.drivers.adapter.DriverToAbstractDriverAdapter;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJane;
 import edu.kis.powp.jobs2d.magicpresets.FiguresJoe;
 
@@ -32,7 +32,7 @@ public class SelectTestFigureOptionListener implements ActionListener {
 				FiguresJoe.figureScript2(driver);
 			}
 			case TestFigureJane -> {
-				FiguresJane.figureScript(new DriverToAbstractDroverAdapter(driver));
+				FiguresJane.figureScript(new DriverToAbstractDriverAdapter(driver));
 			}
             default -> throw new IllegalStateException("Unexpected value: " + actionCommand);
         };
